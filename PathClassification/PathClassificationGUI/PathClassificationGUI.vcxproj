@@ -113,7 +113,6 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ClassifyAlgoInterface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PathClassificationGUI.cpp" />
   </ItemGroup>

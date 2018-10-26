@@ -39,9 +39,6 @@
     <ClCompile Include="PathClassificationGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClassifyAlgoInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PathClassificationGUI.h">
@@ -60,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassifyAlgoInterface.h">
-      <Filter>Header Files</Filter>
+      <Filter>interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
