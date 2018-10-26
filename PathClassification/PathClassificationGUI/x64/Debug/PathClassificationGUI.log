@@ -1,0 +1,9 @@
+﻿  Moc'ing PathClassificationGUI.h...
+  Rcc'ing PathClassificationGUI.qrc...
+  Uic'ing PathClassificationGUI.ui...
+  RCC: Warning: No resources in 'H:\Lession\code\cpp\PathClassification\PathClassificationGUI\PathClassificationGUI.qrc'.
+  main.cpp
+  PathClassificationGUI.cpp
+  moc_PathClassificationGUI.cpp
+  qrc_PathClassificationGUI.cpp
+  PathClassificationGUI.vcxproj -> H:\Lession\code\cpp\PathClassification\x64\Debug\PathClassificationGUI.exe
