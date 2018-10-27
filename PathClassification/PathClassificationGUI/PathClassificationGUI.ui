@@ -1,29 +1,120 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>PathClassificationGUIClass</class>
- <widget class="QMainWindow" name="PathClassificationGUIClass" >
-  <property name="objectName" >
-   <string notr="true">PathClassificationGUIClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QMainWindow" name="PathClassificationGUIClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>PathClassificationGUI</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>601</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="testbtn" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>180</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="TestLab" name="label">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>150</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>testbtn</class>
+   <extends>QPushButton</extends>
+   <header>testbtn.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TestLab</class>
+   <extends>QLabel</extends>
+   <header>TestLab.h</header>
+   <slots>
+    <slot>test()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources>
-   <include location="PathClassificationGUI.qrc"/>
+  <include location="PathClassificationGUI.qrc"/>
  </resources>
- <connections/>
-</UI>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>label</receiver>
+   <slot>test()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>226</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

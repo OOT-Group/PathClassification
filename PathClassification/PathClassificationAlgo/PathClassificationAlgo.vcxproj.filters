@@ -21,13 +21,16 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="interface\ClassfyAlgo.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\Route.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Entity\Point.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Cluster.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\IClassfyAlgo.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Point.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Cluster.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

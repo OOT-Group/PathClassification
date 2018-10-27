@@ -39,9 +39,21 @@
     <ClCompile Include="PathClassificationGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="testbtn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PathClassificationGUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="TestLab.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="testbtn.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

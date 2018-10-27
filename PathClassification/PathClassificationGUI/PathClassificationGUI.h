@@ -9,6 +9,7 @@ class PathClassificationGUI : public QMainWindow
 
 public:
 	PathClassificationGUI(QWidget *parent = Q_NULLPTR);
+	Ui::PathClassificationGUIClass* GetUi();
 
 private:
 	Ui::PathClassificationGUIClass ui;
