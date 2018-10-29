@@ -1,26 +1,26 @@
-#pragma once
+#pragma oncestratPoint
 #include "Route.h"
 #include <vector>
 class Cluster
 {
 private:
 	std::vector<Route> routes;
-	Point* centerPoint;
-	Point* stratPoint;
-	Point* endPoint;
+	Point* avgCenterPoint;
+	Point* avgStartPoint;
+	Point* avgEndPoint;
 public:
 	Cluster();
 	void SetRoutes(std::vector<Route>& routes) { this->routes = routes; }
 	std::vector<Route>* GetRoutes() { return &routes; }
 
-	void SetCenterPoint(Point* point) { this->centerPoint = point; }
-	Point* GetCenterPoint() { return centerPoint; }
+	void SetCenterPoint(Point* point) { this->avgCenterPoint = point; }
+	Point* GetCenterPoint() { return avgCenterPoint; }
 
-	void SetStratPoint(Point* point) { this->stratPoint = point; }
-	Point* GetStratPoint() { return stratPoint; }
+	void SetstartPoint(Point* point) { this->avgStartPoint = point; }
+	Point* GetstartPoint() { return avgStartPoint; }
 
-	void SetEndPoint(Point* point) { this->endPoint = point; }
-	Point* GetEndPoint() { return endPoint; }
+	void SetEndPoint(Point* point) { this->avgEndPoint = point; }
+	Point* GetEndPoint() { return avgEndPoint; }
 
 	double CalcRouteToClusterDistance(const Route& route);
 

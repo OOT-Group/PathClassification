@@ -12,7 +12,7 @@ public:
 	inline double SetX(double x) { this->x = x; }
 	inline double GetX() { return x; }
 	inline double GetY() { return y; }
-	double CalcDistance(Point* p);
+	double CalcDistance(Point pA, Point pB);  // ¡Ωµ„º‰æ‡¿Î
 	~Point();
 };
 
