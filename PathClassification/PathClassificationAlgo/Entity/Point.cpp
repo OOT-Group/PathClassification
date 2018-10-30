@@ -7,11 +7,12 @@ Point::Point()
 }
 
 
-double Point::CalcDistance(Point pA, Point pB)
+double Point::CalcDistance(Point* p)
 {
-	return sqrt(((double)pB.x - pA.x) * ((double)pB.x - pA.x)                     
-		+ ((double)pB.y - pA.y) * ((double)pB.y - pA.y));                              
+	return sqrt(((double)this->x - p->x) * ((double)this->x - p->x)
+		+ ((double)this->y - p->y) * ((double)this->y - p->y));
 }
+
 
 Point::~Point()
 {

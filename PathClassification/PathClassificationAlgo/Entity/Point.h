@@ -9,10 +9,10 @@ public:
 	Point();
 	Point(double x, double y);
 	inline void SetY(double y) { this->y = y; }
-	inline double SetX(double x) { this->x = x; }
+	inline void SetX(double x) { this->x = x; }
 	inline double GetX() { return x; }
 	inline double GetY() { return y; }
-	double CalcDistance(Point pA, Point pB);  // 两点间距离
+	double CalcDistance(Point* p);		// 两点间距离
 	~Point();
 };
 

@@ -7,7 +7,7 @@ private:
 	std::vector<Point> points;
 	int flag;
 	std::vector<double> distances;
-	double distance;
+	double totalDistance;
 	Point* centerPoint;
 	double bendRate;
 	int num;
@@ -22,8 +22,8 @@ public:
 	void SetDistances(std::vector<double>& distances) { this->distances = distances; }
 	std::vector<double>* GetDistances() { return &distances; }
 
-	void SetDistance(int distance) { this->distance = distance; }
-	int GetDistance() { return distance; }
+	void SetTotalDistance(int distance) { this->totalDistance = distance; }
+	int GetTotalDistance() { return totalDistance; }
 
 	void SetCenterPoint(Point* point) { this->centerPoint = point; }
 	Point* GetCenterPoint() { return centerPoint; }
@@ -33,6 +33,9 @@ public:
 
 	void SetNum(int num) { this->num = num; }
 	int GetNum() { return num; }
+
+	void GenerateCenterPoint();			// 生成形心
+	void GenerateRouteDistances();		// 生成路径长度
 
 	~Route();
 };

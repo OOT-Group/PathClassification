@@ -16,13 +16,13 @@ public:
 	void SetCenterPoint(Point* point) { this->avgCenterPoint = point; }
 	Point* GetCenterPoint() { return avgCenterPoint; }
 
-	void SetstartPoint(Point* point) { this->avgStartPoint = point; }
-	Point* GetstartPoint() { return avgStartPoint; }
+	void GetStartPoint(Point* point) { this->avgStartPoint = point; }
+	Point* GetStartPoint() { return avgStartPoint; }
 
 	void SetEndPoint(Point* point) { this->avgEndPoint = point; }
 	Point* GetEndPoint() { return avgEndPoint; }
 
-	double CalcRouteToClusterDistance(const Route& route);
+	double CalcRouteToClusterDistance(Route& route);
 
 	Point* CalcAvgStartPoint();
 	Point* CalcAvgCenterPoint();
