@@ -7,7 +7,7 @@ Point::Point()
 }
 
 
-double Point::CalcDistance(Point* p)
+double Point::CalcDistance(const Point* p)const
 {
 	return sqrt(((double)this->x - p->x) * ((double)this->x - p->x)
 		+ ((double)this->y - p->y) * ((double)this->y - p->y));

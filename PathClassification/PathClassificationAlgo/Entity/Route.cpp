@@ -22,7 +22,7 @@ void Route::GenerateCenterPoint()
 	}
 	xAvg = xAvg / this->totalDistance;                                // 加权平均x
 	yAvg = yAvg / this->totalDistance;                                // 加权平均y
-	Point* pointAvg;												  // 新建点
+	Point* pointAvg = new Point;									  // 新建点
 	pointAvg->SetX(xAvg); 
 	pointAvg->SetY(yAvg);
 	centerPoint = pointAvg;											  // 生成形心
