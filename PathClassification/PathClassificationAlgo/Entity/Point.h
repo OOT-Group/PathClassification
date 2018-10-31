@@ -12,7 +12,7 @@ public:
 	inline void SetX(double x) { this->x = x; }
 	inline double GetX() { return x; }
 	inline double GetY() { return y; }
-	double CalcDistance(const Point* p)const;		// 两点间距离
+	double CalcDistance(Point* p);		// 两点间距离
 	~Point();
 };
 
