@@ -27,6 +27,7 @@ Point * Cluster::CalcAvgStartPoint()
 	}
 	avgStartPoint->SetX((double)startX / n + 0.5f);				// 计算平均起始点
 	avgStartPoint->SetY((double)startY / n + 0.5f);				// 计算平均起始点
+	
 	return avgStartPoint;
 }
 
