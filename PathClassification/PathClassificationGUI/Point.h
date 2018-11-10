@@ -1,6 +1,6 @@
 #pragma once
 
-class _declspec(dllexport)  Point
+class   Point
 {
 private:
 	double x;

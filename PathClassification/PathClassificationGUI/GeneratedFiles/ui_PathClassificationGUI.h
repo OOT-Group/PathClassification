@@ -11,14 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
-#include "TestLab.h"
-#include "testbtn.h"
+#include "drawwidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -26,11 +23,10 @@ class Ui_PathClassificationGUIClass
 {
 public:
     QWidget *centralWidget;
-    QFrame *frame;
-    testbtn *pushButton;
-    TestLab *label;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
+    DrawWidget *drawArea;
+    QPushButton *clearBtn;
+    QPushButton *undoBtn;
+    QPushButton *classifyBtn;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *PathClassificationGUIClass)
@@ -40,32 +36,24 @@ public:
         PathClassificationGUIClass->resize(600, 400);
         centralWidget = new QWidget(PathClassificationGUIClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        frame = new QFrame(centralWidget);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(0, 0, 601, 341));
-        frame->setCursor(QCursor(Qt::ArrowCursor));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        pushButton = new testbtn(frame);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(220, 180, 75, 23));
-        label = new TestLab(frame);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(380, 150, 54, 12));
+        drawArea = new DrawWidget(centralWidget);
+        drawArea->setObjectName(QStringLiteral("drawArea"));
+        drawArea->setGeometry(QRect(0, 0, 601, 321));
+        clearBtn = new QPushButton(centralWidget);
+        clearBtn->setObjectName(QStringLiteral("clearBtn"));
+        clearBtn->setGeometry(QRect(20, 330, 75, 23));
+        undoBtn = new QPushButton(centralWidget);
+        undoBtn->setObjectName(QStringLiteral("undoBtn"));
+        undoBtn->setGeometry(QRect(160, 330, 75, 23));
+        classifyBtn = new QPushButton(centralWidget);
+        classifyBtn->setObjectName(QStringLiteral("classifyBtn"));
+        classifyBtn->setGeometry(QRect(320, 330, 75, 23));
         PathClassificationGUIClass->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(PathClassificationGUIClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 23));
-        PathClassificationGUIClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(PathClassificationGUIClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        PathClassificationGUIClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(PathClassificationGUIClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         PathClassificationGUIClass->setStatusBar(statusBar);
 
         retranslateUi(PathClassificationGUIClass);
-        QObject::connect(pushButton, SIGNAL(clicked()), label, SLOT(test()));
 
         QMetaObject::connectSlotsByName(PathClassificationGUIClass);
     } // setupUi
@@ -73,8 +61,9 @@ public:
     void retranslateUi(QMainWindow *PathClassificationGUIClass)
     {
         PathClassificationGUIClass->setWindowTitle(QApplication::translate("PathClassificationGUIClass", "PathClassificationGUI", nullptr));
-        pushButton->setText(QApplication::translate("PathClassificationGUIClass", "PushButton", nullptr));
-        label->setText(QApplication::translate("PathClassificationGUIClass", "TextLabel", nullptr));
+        clearBtn->setText(QApplication::translate("PathClassificationGUIClass", "Clear", nullptr));
+        undoBtn->setText(QApplication::translate("PathClassificationGUIClass", "Undo", nullptr));
+        classifyBtn->setText(QApplication::translate("PathClassificationGUIClass", "Classify", nullptr));
     } // retranslateUi
 
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include "Route.h"
 #include <vector>
-class _declspec(dllexport) Cluster
+class  Cluster
 {
 private:
 	std::vector<Route> routes;

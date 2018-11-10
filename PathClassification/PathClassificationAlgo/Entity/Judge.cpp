@@ -6,7 +6,7 @@ Judge::Judge()
 {
 }
 
-std::vector<Route>* Judge::ClassfyRoute(std::vector<Route>& routes)
+std::vector<Route> Judge::ClassfyRoute(std::vector<Route>& routes)
 {
 	for (int i = 0; i < routes.size(); i++)		// 对每条路径计算线长和形心
 	{
@@ -25,32 +25,32 @@ std::vector<Route>* Judge::ClassfyRoute(std::vector<Route>& routes)
 			checkCluster(routes[j]);
 		}
 	}
-	return &routes;
+	return routes;
 }
 
-bool Judge::Similar(Point * p1, Point * p2)
+bool Judge::Similar(Point& p1, Point& p2)
 {
-	double check = p1->CalcDistance(p2);		// 检测点距
+	double check = p1.CalcDistance(p2);		// 检测点距
 	if(check <= distancePara)					// 满足条件
 		return true;
 	return false;
 }
 
-bool Judge::Similar(Route * route1, Route * route2)
+bool Judge::Similar(Route& route1, Route& route2)
 {
-	double bendRate1 = (route1->GetTotalDistance() / (route1->GetPoints()->at(0).CalcDistance(&route1->GetPoints()->back() ) ) );		// 第一条路径曲度
-	double bendRate2 = (route2->GetTotalDistance() / (route2->GetPoints()->at(0).CalcDistance(&route2->GetPoints()->back() ) ) );		// 第二条路径曲度
+	double bendRate1 = (route1.GetTotalDistance() / (route1.GetPoints().at(0).CalcDistance(route1.GetPoints().back() ) ) );		// 第一条路径曲度
+	double bendRate2 = (route2.GetTotalDistance() / (route2.GetPoints().at(0).CalcDistance(route2.GetPoints().back() ) ) );		// 第二条路径曲度
 	if (abs(bendRate1 - bendRate2) <= bendPara)		// 曲度是否在曲度参数范围内
 		return true;
 	return false;
 }
 
-bool Judge::CheckSimilar(Route * route1, Route * route2)
+bool Judge::CheckSimilar(Route& route1, Route& route2)
 {
 	if (Similar(route1, route2))		// 判断两条路径曲度是否在参数范围内
-		if (Similar(&route1->GetPoints()->at(0), &route2->GetPoints()->at(0)))		// 判断两条路径的起始点距是否在参数范围内
-			if (Similar(&route1->GetPoints()->back(), &route2->GetPoints()->back()))		// 判断两条路径的终止点距是否在参数范围内
-				if (Similar(route1->GetCenterPoint(), route2->GetCenterPoint()))					// 判断两条路径的形心点距是否在参数范围内
+		if (Similar(route1.GetPoints().at(0), route2.GetPoints().at(0)))		// 判断两条路径的起始点距是否在参数范围内
+			if (Similar(route1.GetPoints().back(), route2.GetPoints().back()))		// 判断两条路径的终止点距是否在参数范围内
+				if (Similar(route1.GetCenterPoint(), route2.GetCenterPoint()))					// 判断两条路径的形心点距是否在参数范围内
 					return true;
 	return false;
 }
@@ -58,25 +58,25 @@ bool Judge::CheckSimilar(Route * route1, Route * route2)
 
 void Judge::Init(std::vector<Route>& routes)
 {
-	Clusters.push_back(*new Cluster());					// 新建聚类，加入聚类列表
-	Clusters[0].GetRoutes()->push_back(routes[0]);		// 将第0条路径加入该聚类
+	Clusters.push_back(Cluster());					// 新建聚类，加入聚类列表
+	Clusters[0].GetRoutes().push_back(routes[0]);		// 将第0条路径加入该聚类
 	for (int i = 1; i < routes.size(); i++)				// 遍历后面的路径，判断与聚类列表已存在的聚类第一条路径是否相似
 	{
 		bool setFlag = FALSE;							// 判断路径是否加入聚类
 		for (int j = 0; j < Clusters.size(); j++)
 		{
-			if (CheckSimilar(&routes[i], &Clusters[j].GetRoutes()->at(0)))	// 若相似，将其加入与其相似的聚类
+			if (CheckSimilar(routes[i], Clusters[j].GetRoutes().at(0)))	// 若相似，将其加入与其相似的聚类
 			{
-				Clusters[j].GetRoutes()->push_back(routes[i]);
+				Clusters[j].GetRoutes().push_back(routes[i]);
 				setFlag = TRUE;
 				break;
 			}
 		}
 		if (!setFlag)									// 若不相似，新建聚类包含这条路径，再把聚类放到聚类列表
 		{
-			Cluster* clus = new Cluster();
-			clus->GetRoutes()->push_back(routes[i]);
-			Clusters.push_back(*clus);
+			Cluster clus;
+			clus.GetRoutes().push_back(routes[i]);
+			Clusters.push_back(clus);
 		}
 	}
 }
@@ -87,14 +87,14 @@ void Judge::avgCluster()
 	for (int i = 0; i < nums;)                 
 	{
 		Cluster clus = Clusters[i];              
-		if (clus.GetRoutes()->size() == 0)      // 若某个聚类中没有路径，清掉这个聚类
+		if (clus.GetRoutes().size() == 0)      // 若某个聚类中没有路径，清掉这个聚类
 			Clusters.erase(Clusters.begin()+i);          
 		else									// 如果这个聚类中有路径的话，计算聚类平均点，再清掉这个聚类中的路径
 		{
 			clus.CalcAvgStartPoint();
 			clus.CalcAvgEndPoint();
 			clus.CalcAvgCenterPoint();
-			clus.GetRoutes()->clear();            
+			clus.GetRoutes().clear();            
 			i++;
 		}
 	}
@@ -113,7 +113,7 @@ void Judge::checkCluster(Route& route)
 			min = dis;                              
 		}
 	}
-	Clusters[index].GetRoutes()->push_back(route);	// 将这条路径放入距离最小的编号的聚类中
+	Clusters[index].GetRoutes().push_back(route);	// 将这条路径放入距离最小的编号的聚类中
 	route.SetFlag(index);							// 设置其flag为其聚类列表的索引值
 }
 

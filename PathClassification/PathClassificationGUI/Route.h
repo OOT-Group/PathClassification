@@ -1,7 +1,7 @@
 #pragma once
 #include "Point.h"
 #include <vector>
-class _declspec(dllexport) Route
+class Route
 {
 private:
 	std::vector<Point> points;

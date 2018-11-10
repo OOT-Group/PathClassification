@@ -1,11 +1,10 @@
 #pragma once
-#include "..\Entity\Route.h"
-#include "..\stdafx.h"
+#include "Route.h"
 
 
 
 
-class _declspec(dllexport) IClassfyAlgo {
+class  IClassfyAlgo {
 protected:
 	double distancePara;
 	double bendPara;

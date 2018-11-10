@@ -1,7 +1,7 @@
 #pragma once
-#include "../interface/IClassfyAlgo.h"
+#include "IClassfyAlgo.h"
 #include "Cluster.h"
-class _declspec(dllexport) Judge :
+class  Judge :
 	public IClassfyAlgo
 {
 public:
