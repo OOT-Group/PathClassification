@@ -17,7 +17,7 @@ std::vector<Route> Judge::ClassfyRoute(std::vector<Route>& routes)
 	// Kmeans++
 	// 第一次分类
 	Init(routes);
-	for (int i = 0; i < 10; i++)				// 这里的10，可以定义为宏，也可以输入，为使Kmeans聚类更加精确
+	for (int i = 0; i < 1; i++)				// 这里的10，可以定义为宏，也可以输入，为使Kmeans聚类更加精确
 	{
 		avgCluster();							// 计算聚类平均点，然后清空聚类中的路径
 		for (int j = 0; j < routes.size(); j++)	// 对每一条路径重新判断是否与已经存在的某个聚类更近，再重新添加入聚类中
@@ -86,15 +86,15 @@ void Judge::avgCluster()
 	int nums = Clusters.size();                 // 获取当前聚类数量
 	for (int i = 0; i < nums;)                 
 	{
-		Cluster clus = Clusters[i];              
-		if (clus.GetRoutes().size() == 0)      // 若某个聚类中没有路径，清掉这个聚类
+		Cluster* clus = &Clusters[i];              
+		if (clus->GetRoutes().size() == 0)      // 若某个聚类中没有路径，清掉这个聚类
 			Clusters.erase(Clusters.begin()+i);          
 		else									// 如果这个聚类中有路径的话，计算聚类平均点，再清掉这个聚类中的路径
 		{
-			clus.CalcAvgStartPoint();
-			clus.CalcAvgEndPoint();
-			clus.CalcAvgCenterPoint();
-			clus.GetRoutes().clear();            
+			clus->CalcAvgStartPoint();
+			clus->CalcAvgEndPoint();
+			clus->CalcAvgCenterPoint();
+			clus->GetRoutes().clear();
 			i++;
 		}
 	}

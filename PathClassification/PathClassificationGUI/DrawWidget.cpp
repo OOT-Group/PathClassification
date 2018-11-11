@@ -97,6 +97,8 @@ void DrawWidget::Clear()
 	if (undoPixList.size() >1) {
 		this->paintType = PaintType::Clear;
 		routes.clear();
+		alRoutes.clear();
+		routesNum = 0;
 		while (undoPixList.size() != 1) {
 			undoPixList.pop();
 		}
@@ -109,6 +111,8 @@ void DrawWidget::Undo()
 	if (undoPixList.size() >1) {
 		this->paintType = PaintType::Undo;
 		routes.pop_back();
+		alRoutes.pop_back();
+		routesNum--;
 		undoPixList.pop();
 		this->update();
 	}
@@ -122,7 +126,7 @@ void DrawWidget::Classify() {
 		}
 		this->paintType = PaintType::Classify;
 		IClassfyAlgo* algo = new Judge();
-		algo->InitPara(10, 0.5);
+		algo->InitPara(50, 0.3);
 		auto newRoutes = algo->ClassfyRoute(alRoutes);
 		int num = newRoutes.size();
 		alRoutes = newRoutes;
