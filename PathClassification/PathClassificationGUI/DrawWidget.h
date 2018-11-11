@@ -30,6 +30,9 @@ protected:
 
 	std::vector<Point> alPoints;
 	std::vector<Route> alRoutes;
+	int distancePram = 50;
+	double bendParam = 0.5;
+
 
 	int routesNum;
 	std::vector<QPoint> drawPoints;

@@ -126,7 +126,7 @@ void DrawWidget::Classify() {
 		}
 		this->paintType = PaintType::Classify;
 		IClassfyAlgo* algo = new Judge();
-		algo->InitPara(50, 0.3);
+		algo->InitPara(distancePram, bendParam);
 		auto newRoutes = algo->ClassfyRoute(alRoutes);
 		int num = newRoutes.size();
 		alRoutes = newRoutes;
@@ -138,6 +138,7 @@ void DrawWidget::DrawUndo()
 	this->paintType = PaintType::Normal;
 	pixmap = undoPixList.top();
 	QPainter pain(this);
+	pain.setRenderHint(QPainter::Antialiasing, true);
 	pain.setPen(pen);
 	pain.drawPixmap(0, 0, pixmap);
 
@@ -147,6 +148,7 @@ void DrawWidget::DrawNormal()
 
 	if (beginDraw) {
 		QPainter p(&pixmap);
+		p.setRenderHint(QPainter::Antialiasing, true);
 		p.setPen(pen);
 
 
@@ -171,6 +173,7 @@ void DrawWidget::DrawNormal()
 		
 	}
 	QPainter pain(this);
+	pain.setRenderHint(QPainter::Antialiasing, true);
 	pain.setPen(pen);
 	pain.drawPixmap(0, 0, pixmap);
 }
@@ -179,6 +182,7 @@ void DrawWidget::DrawClear()
 	this->paintType = PaintType::Normal;
 	pixmap = undoPixList.top();
 	QPainter pain(this);
+	pain.setRenderHint(QPainter::Antialiasing, true);
 	pain.setPen(pen);
 	pain.drawPixmap(0, 0, pixmap);
 }
@@ -190,6 +194,7 @@ void DrawWidget::DrawClassify()
 	QPainter paint(&pixmap);
 	QPen newpen;
 	newpen.setWidth(5);
+	paint.setRenderHint(QPainter::Antialiasing, true);
 	for (int i = 0; i < alRoutes.size(); i++) {
 		int flag=alRoutes[i].GetFlag();
 		newpen.setColor(colors[flag]);
@@ -210,6 +215,7 @@ void DrawWidget::DrawClassify()
 
 	}
 	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing, true);
 	painter.drawPixmap(0,0,pixmap);
 
 	undoPixList.push(pixmap);
