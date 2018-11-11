@@ -25,13 +25,16 @@ void DrawWidget::Init()
 	pen.setWidth(5);
 	undoPixList.push(pixmap);
 
-	colors.push_back(Qt::GlobalColor::black);
-	colors.push_back(Qt::GlobalColor::red);
-	colors.push_back(Qt::GlobalColor::blue);
-	colors.push_back(Qt::GlobalColor::gray);
-	colors.push_back(Qt::GlobalColor::yellow);
-	colors.push_back(Qt::GlobalColor::green);
-	colors.push_back(Qt::GlobalColor::darkYellow);
+	//colors.push_back(Qt::GlobalColor::black);
+	//colors.push_back(Qt::GlobalColor::red);
+	//colors.push_back(Qt::GlobalColor::blue);
+	//colors.push_back(Qt::GlobalColor::gray);
+	//colors.push_back(Qt::GlobalColor::yellow);
+	//colors.push_back(Qt::GlobalColor::green);
+	////colors.push_back(Qt::GlobalColor::darkYellow);
+	for (int i = 4; i < 19; i++) {
+		colors.push_back(Qt::GlobalColor(i));
+	}
 }
 
 DrawWidget::~DrawWidget()
