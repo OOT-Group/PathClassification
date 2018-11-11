@@ -11,6 +11,9 @@ public:
 	PathClassificationGUI(QWidget *parent = Q_NULLPTR);
 	Ui::PathClassificationGUIClass* GetUi();
 	void Init();
+	public slots:
+	void UpdateDistance();
+	void UpdateBend();
 private:
 	Ui::PathClassificationGUIClass ui;
 };

@@ -20,9 +20,11 @@ void DrawWidget::Init()
 	pixmap = QPixmap(width, height);
 	this->setStyleSheet("background:white;");
 	pixmap.fill();
+	tempPix = pixmap;
 	routesNum = 0;
 	pen.setColor(Qt::black);
 	pen.setWidth(5);
+	pen.setCapStyle(Qt::RoundCap);
 	undoPixList.push(pixmap);
 
 	//colors.push_back(Qt::GlobalColor::black);
@@ -43,7 +45,7 @@ DrawWidget::~DrawWidget()
 
 void DrawWidget::mousePressEvent(QMouseEvent * ent)
 {
-	if (ent->button() == Qt::LeftButton) {
+	if (ent->button() == Qt::LeftButton && !classified) {
 		beginDraw = true;
 	}
 }
@@ -105,17 +107,18 @@ void DrawWidget::Clear()
 		while (undoPixList.size() != 1) {
 			undoPixList.pop();
 		}
+		classified = false;
 		this->update();
 	}
 }
 
 void DrawWidget::Undo()
 {
-	if (undoPixList.size() >1) {
+	if (undoPixList.size() >1 && !classified) {
 		this->paintType = PaintType::Undo;
-		routes.pop_back();
-		alRoutes.pop_back();
-		routesNum--;
+			routes.pop_back();
+			alRoutes.pop_back();
+			routesNum--;
 		undoPixList.pop();
 		this->update();
 	}
@@ -123,18 +126,25 @@ void DrawWidget::Undo()
 }
 
 void DrawWidget::Classify() {
-	if (alRoutes.size() > 1) {
-		while (undoPixList.size() != 1) {
-			undoPixList.pop();
-		}
+	if (alRoutes.size() > 1 && !classified) {
+		
 		this->paintType = PaintType::Classify;
 		IClassfyAlgo* algo = new Judge();
 		algo->InitPara(distancePram, bendParam);
 		auto newRoutes = algo->ClassfyRoute(alRoutes);
 		int num = newRoutes.size();
 		alRoutes = newRoutes;
+		classified = true;
 		this->update();
 	}
+}
+void DrawWidget::UpdateDistance(int dis)
+{
+	this->distanceParam = dis;
+}
+void DrawWidget::UpdateBend(double bend)
+{
+	this->bendParam = bend;
 }
 void DrawWidget::DrawUndo()
 {
@@ -193,10 +203,11 @@ void DrawWidget::DrawClear()
 void DrawWidget::DrawClassify()
 {
 	this->paintType = PaintType::Normal;
-	pixmap= undoPixList.top();
+	pixmap= tempPix;
 	QPainter paint(&pixmap);
 	QPen newpen;
 	newpen.setWidth(5);
+	newpen.setCapStyle(Qt::RoundCap);
 	paint.setRenderHint(QPainter::Antialiasing, true);
 	for (int i = 0; i < alRoutes.size(); i++) {
 		int flag=alRoutes[i].GetFlag();

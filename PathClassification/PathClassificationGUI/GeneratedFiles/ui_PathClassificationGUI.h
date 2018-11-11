@@ -11,6 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -27,18 +29,22 @@ public:
     QPushButton *clearBtn;
     QPushButton *undoBtn;
     QPushButton *classifyBtn;
+    QLineEdit *distanceTxt;
+    QLabel *label;
+    QLabel *label_2;
+    QLineEdit *bendTxt;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *PathClassificationGUIClass)
     {
         if (PathClassificationGUIClass->objectName().isEmpty())
             PathClassificationGUIClass->setObjectName(QStringLiteral("PathClassificationGUIClass"));
-        PathClassificationGUIClass->resize(600, 400);
+        PathClassificationGUIClass->resize(610, 461);
         centralWidget = new QWidget(PathClassificationGUIClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         drawArea = new DrawWidget(centralWidget);
         drawArea->setObjectName(QStringLiteral("drawArea"));
-        drawArea->setGeometry(QRect(0, 0, 601, 321));
+        drawArea->setGeometry(QRect(0, 0, 611, 321));
         clearBtn = new QPushButton(centralWidget);
         clearBtn->setObjectName(QStringLiteral("clearBtn"));
         clearBtn->setGeometry(QRect(20, 330, 75, 23));
@@ -48,6 +54,18 @@ public:
         classifyBtn = new QPushButton(centralWidget);
         classifyBtn->setObjectName(QStringLiteral("classifyBtn"));
         classifyBtn->setGeometry(QRect(320, 330, 75, 23));
+        distanceTxt = new QLineEdit(centralWidget);
+        distanceTxt->setObjectName(QStringLiteral("distanceTxt"));
+        distanceTxt->setGeometry(QRect(130, 390, 71, 20));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(30, 395, 91, 16));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(230, 395, 61, 16));
+        bendTxt = new QLineEdit(centralWidget);
+        bendTxt->setObjectName(QStringLiteral("bendTxt"));
+        bendTxt->setGeometry(QRect(310, 390, 71, 20));
         PathClassificationGUIClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(PathClassificationGUIClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -64,6 +82,8 @@ public:
         clearBtn->setText(QApplication::translate("PathClassificationGUIClass", "Clear", nullptr));
         undoBtn->setText(QApplication::translate("PathClassificationGUIClass", "Undo", nullptr));
         classifyBtn->setText(QApplication::translate("PathClassificationGUIClass", "Classify", nullptr));
+        label->setText(QApplication::translate("PathClassificationGUIClass", "distanceParam", nullptr));
+        label_2->setText(QApplication::translate("PathClassificationGUIClass", "bendParam", nullptr));
     } // retranslateUi
 
 };

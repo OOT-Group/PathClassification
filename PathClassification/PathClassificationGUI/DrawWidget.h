@@ -25,12 +25,13 @@ public:
 protected:
 	PaintType paintType = PaintType::Normal;
 	bool beginDraw = false;
+	bool classified = false;
 	std::vector<QPoint> points;
 	std::vector<std::vector<QPoint>> routes;
 
 	std::vector<Point> alPoints;
 	std::vector<Route> alRoutes;
-	int distancePram = 50;
+	int distanceParam = 50;
 	double bendParam = 0.5;
 
 
@@ -51,6 +52,9 @@ protected:
 	void Clear();
 	void Undo();
 	void Classify();
+public:
+	void UpdateDistance(int dis);
+	void UpdateBend(double bend);
 private:
 	void DrawUndo();
 	void DrawNormal();
