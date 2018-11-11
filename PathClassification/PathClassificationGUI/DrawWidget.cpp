@@ -130,7 +130,7 @@ void DrawWidget::Classify() {
 		
 		this->paintType = PaintType::Classify;
 		IClassfyAlgo* algo = new Judge();
-		algo->InitPara(distancePram, bendParam);
+		algo->InitPara(distanceParam, bendParam);
 		auto newRoutes = algo->ClassfyRoute(alRoutes);
 		int num = newRoutes.size();
 		alRoutes = newRoutes;
