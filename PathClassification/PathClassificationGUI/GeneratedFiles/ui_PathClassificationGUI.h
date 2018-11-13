@@ -33,6 +33,8 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLineEdit *bendTxt;
+    QLabel *label_3;
+    QLabel *typesTxt;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *PathClassificationGUIClass)
@@ -66,6 +68,12 @@ public:
         bendTxt = new QLineEdit(centralWidget);
         bendTxt->setObjectName(QStringLiteral("bendTxt"));
         bendTxt->setGeometry(QRect(310, 390, 71, 20));
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(390, 390, 91, 16));
+        typesTxt = new QLabel(centralWidget);
+        typesTxt->setObjectName(QStringLiteral("typesTxt"));
+        typesTxt->setGeometry(QRect(490, 390, 91, 16));
         PathClassificationGUIClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(PathClassificationGUIClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -84,6 +92,8 @@ public:
         classifyBtn->setText(QApplication::translate("PathClassificationGUIClass", "Classify", nullptr));
         label->setText(QApplication::translate("PathClassificationGUIClass", "distanceParam", nullptr));
         label_2->setText(QApplication::translate("PathClassificationGUIClass", "bendParam", nullptr));
+        label_3->setText(QApplication::translate("PathClassificationGUIClass", "type of route:", nullptr));
+        typesTxt->setText(QApplication::translate("PathClassificationGUIClass", "0", nullptr));
     } // retranslateUi
 
 };

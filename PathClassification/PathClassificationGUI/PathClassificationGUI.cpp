@@ -27,6 +27,7 @@ void PathClassificationGUI::Init()
 	QObject::connect(ui.classifyBtn, SIGNAL(clicked()), ui.drawArea, SLOT(Classify()));
 	QObject::connect(ui.distanceTxt, SIGNAL(editingFinished()), this, SLOT(UpdateDistance()));
 	QObject::connect(ui.bendTxt, SIGNAL(editingFinished()), this, SLOT(UpdateBend()));
+	QObject::connect(ui.drawArea, SIGNAL(EmitTypes(int)), this, SLOT(UpdateTypes(int)));
 
 }
 void PathClassificationGUI::UpdateDistance()
@@ -47,5 +48,10 @@ void PathClassificationGUI::UpdateBend()
 	if (ok) {
 		ui.drawArea->UpdateBend(bend);
 	}
+}
+
+void PathClassificationGUI::UpdateTypes(int types)
+{
+	ui.typesTxt->setText(QString::number(types));
 }
 

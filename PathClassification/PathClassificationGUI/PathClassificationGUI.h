@@ -14,6 +14,7 @@ public:
 	public slots:
 	void UpdateDistance();
 	void UpdateBend();
+	void UpdateTypes(int types);
 private:
 	Ui::PathClassificationGUIClass ui;
 };

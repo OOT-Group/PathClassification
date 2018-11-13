@@ -27,16 +27,22 @@ void DrawWidget::Init()
 	pen.setCapStyle(Qt::RoundCap);
 	undoPixList.push(pixmap);
 
-	//colors.push_back(Qt::GlobalColor::black);
-	//colors.push_back(Qt::GlobalColor::red);
-	//colors.push_back(Qt::GlobalColor::blue);
-	//colors.push_back(Qt::GlobalColor::gray);
-	//colors.push_back(Qt::GlobalColor::yellow);
-	//colors.push_back(Qt::GlobalColor::green);
-	////colors.push_back(Qt::GlobalColor::darkYellow);
-	for (int i = 4; i < 19; i++) {
+	colors.push_back(Qt::GlobalColor::black);
+	colors.push_back(Qt::GlobalColor::red);
+	colors.push_back(Qt::GlobalColor::blue);
+	colors.push_back(Qt::GlobalColor::gray);
+	colors.push_back(Qt::GlobalColor::yellow);
+	colors.push_back(Qt::GlobalColor::green);
+	colors.push_back(Qt::GlobalColor::darkYellow);
+	colors.push_back(Qt::GlobalColor::darkRed);
+	colors.push_back(Qt::GlobalColor::darkGreen);
+	colors.push_back(Qt::GlobalColor::darkBlue);
+	colors.push_back(Qt::GlobalColor::darkCyan);
+	colors.push_back(Qt::GlobalColor::darkMagenta);
+
+	/*for (int i = 4; i < 19; i++) {
 		colors.push_back(Qt::GlobalColor(i));
-	}
+	}*/
 }
 
 DrawWidget::~DrawWidget()
@@ -132,6 +138,13 @@ void DrawWidget::Classify() {
 		IClassfyAlgo* algo = new Judge();
 		algo->InitPara(distanceParam, bendParam);
 		auto newRoutes = algo->ClassfyRoute(alRoutes);
+
+		routesTypes.clear();
+		for each (auto r in newRoutes)
+		{
+			routesTypes.insert(r.GetFlag());
+		}
+		emit EmitTypes(routesTypes.size());
 		int num = newRoutes.size();
 		alRoutes = newRoutes;
 		classified = true;
@@ -211,6 +224,9 @@ void DrawWidget::DrawClassify()
 	paint.setRenderHint(QPainter::Antialiasing, true);
 	for (int i = 0; i < alRoutes.size(); i++) {
 		int flag=alRoutes[i].GetFlag();
+		/*QColor color;
+		auto colorStr="#"+QString("%1").arg((hexColor+flag*0x3300)%0xFFFFFF, 6, 16, QLatin1Char('0'));
+		color.setNamedColor(colorStr);*/
 		newpen.setColor(colors[flag]);
 		paint.setPen(newpen);
 		int num = alRoutes[i].GetNum();

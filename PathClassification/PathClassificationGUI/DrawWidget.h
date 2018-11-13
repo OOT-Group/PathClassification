@@ -4,7 +4,7 @@
 #include <qpoint.h>
 #include <qpainter.h>
 #include <stack>
-
+#include <set>
 #include "IClassfyAlgo.h"
 #include "Judge.h"
 #pragma comment(lib, "PathClassificationAlgo.lib")
@@ -23,6 +23,7 @@ public:
 	void Init();
 	~DrawWidget();
 protected:
+	int hexColor = 0x00000F;
 	PaintType paintType = PaintType::Normal;
 	bool beginDraw = false;
 	bool classified = false;
@@ -31,6 +32,7 @@ protected:
 
 	std::vector<Point> alPoints;
 	std::vector<Route> alRoutes;
+	std::set<int> routesTypes;
 	int distanceParam = 50;
 	double bendParam = 0.5;
 
@@ -52,6 +54,8 @@ protected:
 	void Clear();
 	void Undo();
 	void Classify();
+signals:
+	void EmitTypes(int types);
 public:
 	void UpdateDistance(int dis);
 	void UpdateBend(double bend);
